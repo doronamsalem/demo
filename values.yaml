@@ -1,0 +1,99 @@
+appsNamespace: <PlaceHolder>
+classified_env: <PlaceHolder>
+detachedTests: <PlaceHolder>
+endpoints:
+  OSM: <PlaceHolder>
+  WMS_URL: <PlaceHolder>
+  WMTS_CAPABILITIES_SRC: <PlaceHolder>
+  WMTS_LAYER: <PlaceHolder>
+  algorithm_grpc_server: <PlaceHolder>
+  algorithm_rest_server: <PlaceHolder>
+  algorithm_servers: <PlaceHolder>
+  elasticsearch: <PlaceHolder>
+  frontendUrl: <PlaceHolder>
+  kafka: <PlaceHolder>
+  kafkaBrokers: <PlaceHolder>
+  kafkaConnect: <PlaceHolder>
+  mongodb: <PlaceHolder>
+  mongodbAuthSource: <PlaceHolder>
+  redisdb: <PlaceHolder>
+  s3: <PlaceHolder>
+filePaths:
+  kafkaSslCert: <PlaceHolder>
+  kafkaSslKey: <PlaceHolder>
+fixed_ip:
+  enable: <PlaceHolder>
+  mics_gateway: <PlaceHolder>
+image:
+  imagePullSecrets: <PlaceHolder>
+  repository: <PlaceHolder>
+keycloak:
+  authPrefix: <PlaceHolder>
+  clientId: <PlaceHolder>
+  domain: <PlaceHolder>
+  realm: <PlaceHolder>
+  realmPublicKey: <PlaceHolder>
+  rejectUnauthorizedRequest: <PlaceHolder>
+lightrun:
+  api_endpoint: <PlaceHolder>
+  ca_path: <PlaceHolder>
+  enable: <PlaceHolder>
+  pinned_cert: <PlaceHolder>
+  secret: <PlaceHolder>
+mongodbOptions:
+  queryParams: <PlaceHolder>
+networking:
+  ingress: <PlaceHolder>
+  route: <PlaceHolder>
+project: <PlaceHolder>
+redis:
+  host: <PlaceHolder>
+  port: <PlaceHolder>
+replicaCount:
+  commonDataLayerTransformation: <PlaceHolder>
+  commonGateway: <PlaceHolder>
+  commonGcManager: <PlaceHolder>
+  commonGetHeight: <PlaceHolder>
+  commonLayersManager: <PlaceHolder>
+  commonNotificationService: <PlaceHolder>
+  commonRealityManager: <PlaceHolder>
+  commonRecorderService: <PlaceHolder>
+  commonSearchDataTransformation: <PlaceHolder>
+  commonSearchService: <PlaceHolder>
+  commonSinker: <PlaceHolder>
+  commonTransceiverMessagesHandler: <PlaceHolder>
+  commonTransceiversApi: <PlaceHolder>
+  commontransceiversScheduler: <PlaceHolder>
+  flightAlgoGateway: <PlaceHolder>
+  flightAlgoSkypictureStream: <PlaceHolder>
+  flightBeAutomation: <PlaceHolder>
+  flightBenchmarkingService: <PlaceHolder>
+  flightCommandsManager: <PlaceHolder>
+  flightComponentsInventories: <PlaceHolder>
+  flightDronamic: <PlaceHolder>
+  flightDroneGw: <PlaceHolder>
+  flightDroneManager: <PlaceHolder>
+  flightDroneSimulator: <PlaceHolder>
+  flightDronesInventory: <PlaceHolder>
+  flightGcsUi: <PlaceHolder>
+  flightHermes: <PlaceHolder>
+  flightInfraManager: <PlaceHolder>
+  flightJetometer: <PlaceHolder>
+  flightLoki: <PlaceHolder>
+  flightMicsGateway: <PlaceHolder>
+  flightMissionCommander: <PlaceHolder>
+  flightNotify: <PlaceHolder>
+  flightPercy: <PlaceHolder>
+  flightPhanes: <PlaceHolder>
+  flightRagnar: <PlaceHolder>
+  flightSkypictureManager: <PlaceHolder>
+  flightSseService: <PlaceHolder>
+  flightStorlink: <PlaceHolder>
+  flightTesting: <PlaceHolder>
+  flightUiAutomation: <PlaceHolder>
+  flightWeather: <PlaceHolder>
+  lrmrGcsUi: <PlaceHolder>
+repoURL: <PlaceHolder>
+searchEntityTransformedTopic: <PlaceHolder>
+secretName: <PlaceHolder>
+targetRevision: <PlaceHolder>
