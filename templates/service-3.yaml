@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: service-3
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.appsNamespace }}
+  project: {{ .Values.project }}
+  source:
+    path: service-3
+    repoURL: {{ .Values.repoURL }}
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      parameters:
+        - name: lightrun.enable
+          value: {{ .Values.lightrun.enable | quote }}
+        - name: lightrun.secret
+          value: {{ .Values.lightrun.secret }}
+        - name: lightrun.api_endpoint
+          value: {{ .Values.lightrun.api_endpoint }}
+        - name: lightrun.pinned_cert
+          value: {{ .Values.lightrun.pinned_cert }}
+        - name: lightrun.ca_path
+          value: {{ .Values.lightrun.ca_path }}
+        - name: endpoints.kafka
+          value: {{ .Values.endpoints.kafka }}
+        - name: endpoints.kafkaBrokers
+          value: {{ .Values.endpoints.kafkaBrokers }}
+        - name: endpoints.mongodb
+          value: {{ .Values.endpoints.mongodb }}
+        - name: endpoints.redisdb
+          value: {{ .Values.endpoints.redisdb }}
+        - name: filePaths.kafkaSslKey
+          value: {{ .Values.filePaths.kafkaSslKey }}
+        - name: filePaths.kafkaSslCert
+          value: {{ .Values.filePaths.kafkaSslCert }}
+        - name: image.repository
+          value: {{ .Values.image.repository }}
+        - name: imagePullSecrets
+          value: {{ .Values.image.imagePullSecrets }}
+        - name: replicaCount
+          value: {{ .Values.replicaCount.flightDronamic | quote }}
+          #Override chart name for multiple deployment
+        - name: fullnameOverride
+          value: service-3
+        - name: ingress.enabled
+          value: {{ .Values.networking.ingress.enabled | quote }}
+        - name: route.enabled
+          value: {{ .Values.networking.route.enabled | quote }}
+        {{- if .Values.networking.route.enabled }}
+        - name: route.ingressDomain
+          value: {{ .Values.networking.route.ingressDomain }}
+        {{- end }}
+        - name: "ingress.hosts[0].host"
+          value: {{ .Values.networking.ingress.host }}
+        - name: "ingress.hosts[0].paths[0]"
+          value: /service-3(/|$)(.*)
+        - name: host
+          value: {{ .Values.networking.ingress.host }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
