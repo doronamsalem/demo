@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "service-1.fullname" . }}-cm
+data:
+{{- if and .Values.lightrun .Values.lightrun.enable }}
+  PRODUCTION_DEBUGGER: "true"
+  LIGHTRUN_SECRET: {{ .Values.lightrun.secret }}
+  LIGHTRUN_API_ENDPOINT: {{ .Values.lightrun.api_endpoint }}
+  LIGHTRUN_PINNEDCERTS: {{ .Values.lightrun.pinned_cert }}
+  LIGHTRUN_CA_PATH: {{ .Values.lightrun.ca_path }}
+{{- end }}
+  GEO_SERVER_URL: {{ .Values.geoserver.url }}
+  DTM_LAYER_NAME : {{.Values.geoserver.dtmLayerName}}                   
+  BOX_DELTA   : {{.Values.geoserver.bboxDelta | quote }}
+  FORMAT_IMAGE_SIZE : {{.Values.geoserver.formatImageSize | quote }}                           
+  SRS: {{.Values.geoserver.srs}}      
+  ELEVATION_PROPERTY_NAME : {{.Values.geoserver.elevationPropertyName}}                                                 
+  REJECT_UNAUTHORIZED  : {{.Values.geoserver.rejectUnauthorized | quote }}                                                             
+          

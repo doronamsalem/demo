@@ -1,0 +1,97 @@
+# Default values for common-data-layer-transformation.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  repository: "artifactory/"
+  baseFolder: "common/"
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: ""
+nameOverride: ""
+fullnameOverride: ""
+
+geoserver:
+  url: ""
+  dtmLayerName: "TSGS:dtmAllIsr_int16_deflate"
+  bboxDelta: "0.1"
+  formatImageSize: "1000"
+  srs: "EPSG:4326"
+  elevationPropertyName : "Elevation"
+  rejectUnauthorized: "false"
+  
+secretName: "" # flight-secret
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podAnnotations:
+  sidecar.opentelemetry.io/inject: "true"
+
+podSecurityContext:
+  runAsUser: 1000
+  # fsGroup: 2000
+
+securityContext:
+  {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 3000
+  targetPort: 3000
+
+route:
+  enabled: false
+  labels:
+  annotations:
+  ingressDomain:
+  
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: "/$2"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - /common-roles-service(/|$)(.*)
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 500m # 50% cpu
+    memory: 256Mi
+  requests:
+    cpu: 50m # 5% cpu
+    memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+privateCa:
+  enabled: true
+  name: "trusted-ca"
+  mountPath: "/etc/ssl/certs/"
+  extraCaFile: "extra-certificates.crt"
